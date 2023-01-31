@@ -1,5 +1,6 @@
 body 
  { 
+    background: black;
     color: #333;
     text-align: center; 
     font-family: Arial;
@@ -36,3 +37,18 @@ font-size: 0.8em;
 { 
 font-size: 30px;
 }
+
+
+#cabecera #logo 
+
+{
+  width: 50px;
+  vertical-align: middle;
+}
+
+#post 
+{ 
+background-color: #DDD;
+padding: 1em;
+}
+
