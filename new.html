@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .header {
+        background-color: #008080;
+        color: white;
+        padding: 20px;
+      }
+
+      .header h1 {
+        font-size: 40px;
+      }
+
+      .input-container {
+        margin-top: 20px;
+      }
+
+      .input-container label {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .input-container input[type="number"] {
+        font-size: 20px;
+        padding: 10px;
+        width: 200px;
+      }
+
+      .result-container {
+        margin-top: 20px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Calcula la probabilidad de un numero en aparecer.</h1>
+      </div>
+      <div class="input-container">
+        <label>introduce los numeros :</label>
+        <input type="number" id="numberInput">
+        <button id="calculateBtn">Calcula</button>
+      </div>
+      <div class="result-container">
+        <p id="probabilityResult"></p>
+        <p id="likelyNumbersResult"></p>
+      </div>
+    </div>
+    <script>
+      const calculateBtn = document.querySelector("#calculateBtn");
+      const numberInput = document.querySelector("#numberInput");
+      const probabilityResult = document.querySelector("#probabilityResult");
+      const likelyNumbersResult = document.querySelector("#likelyNumbersResult");
+
+      let drawnNumbers = [];
+
+      calculateBtn.addEventListener("click", function() {
+        const enteredNumber = parseInt(numberInput.value);
+        const totalNumbers = 56;
+        const remainingNumbers = totalNumbers - drawnNumbers.length;
+        const probability = (1 / remainingNumbers) * 100;
+
+        probabilityResult.textContent = `la probabilidad de ${enteredNumber} en volver a aparecer es de ${probability.toFixed(2)}%`;
+
+        if (drawnNumbers.length === 0) {
+          likelyNumbersResult.textContent = "No numbers have been drawn yet.";
+        } else {
+          let mostLikelyNumbers = [];
+          for (let i = 1; i <= totalNumbers; i++) {
+            if (!drawnNumbers.includes(i)) {
+              mostLikelyNumbers.push(i);
+            }
+          }
+          likelyNumbersResult.textContent = `los numeros mas posibles en salir son: ${mostLikelyNumbers.join(", ")}`;
+        }
+
+        drawnNumbers.push(enteredNumber);
+      });
+    </script>
+  </body>
